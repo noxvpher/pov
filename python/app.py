@@ -19,8 +19,8 @@ from firma import verificar_firma  # la verificación, en su propio módulo para
 app = Flask(__name__)
 
 POV = os.environ.get("POV_BASE_URL", "https://pov.uy")
-SHOWTIME = os.environ.get("POV_SHOWTIME", "shw_cine_2d")
-PK = os.environ.get("POV_PUBLIC_KEY", "pk_test_f286048e92dff3b8caffd6e9ea41f1fb6aaf")
+SHOWTIME = os.environ.get("POV_SHOWTIME", "shw_pegá_la_tuya")
+PK = os.environ.get("POV_PUBLIC_KEY", "pk_test_pegá_la_tuya")
 SK = os.environ.get("POV_SECRET_KEY", "")
 WHSEC = os.environ.get("POV_WEBHOOK_SECRET", "")
 

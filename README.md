@@ -19,11 +19,15 @@ quien lo integra.
 
 ```bash
 git clone https://github.com/noxvpher/pov.git
-cd pov/node && cp .env.example .env && npm install && npm start
+cd pov/node && cp .env.example .env   # poné tus claves acá
+npm install && npm start
 ```
 
-Andan apenas los clonás: traen la clave pública de la cuenta de demostración, que sólo llega a
-funciones de prueba. Para vender de verdad, poné las tuyas del panel.
+Los `.env.example` traen **marcadores, no claves**. Las tuyas salen del panel: la `pk_test_` y la
+`sk_test_` de *Integración → Claves*, el id de la función de *Programación → Código*. Empezá por las
+de prueba — venden contra funciones de prueba, sin tocar inventario real ni cobrar un peso.
+
+¿Todavía no tenés cuenta? Pedila en <https://pov.uy/precios>.
 
 ## Cómo funciona una venta
 
