@@ -1,0 +1,8 @@
+{
+  "name": "pov-ejemplo-stripe",
+  "private": true,
+  "type": "module",
+  "description": "POV + Stripe (tu cuenta): bloqueo → PaymentIntent → webhook → confirm.",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "dotenv": "^16.4.5", "express": "^4.21.2", "stripe": "^22.4.0" }
+}

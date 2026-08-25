@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POV — el widget en dos líneas</title>
+    <style>
+      body { font: 16px/1.6 system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; }
+      pre  { background: #f4f4f5; padding: 1rem; border-radius: .5rem; overflow-x: auto; }
+      .vacio { color: #71717a; }
+    </style>
+  </head>
+  <body>
+    <h1>Función de las 20:30</h1>
+
+    <!-- ─────────────────────────────────────────────────────────────────────
+         ESTO ES TODO lo que hace falta para que aparezca el selector.
+         `data-showtime` lo copiás del panel (Programación → Código); acá va el
+         de la función demo de POV, que es pública y de prueba.
+    ────────────────────────────────────────────────────────────────────────── -->
+    <div data-pov
+         data-showtime="shw_cine_2d"
+         data-key="pk_test_f286048e92dff3b8caffd6e9ea41f1fb6aaf"></div>
+    <script src="https://pov.uy/v1/embed.js" async></script>
+
+    <h2>Lo que recibe tu página</h2>
+    <pre id="salida" class="vacio">Elegí una butaca y apretá «Reservar».</pre>
+
+    <script>
+      // El widget avisa por eventos del DOM sobre el propio <div>. El payload va PLANO en
+      // `e.detail`: nunca anidado.
+      const nodo = document.querySelector('[data-pov]');
+      const salida = document.getElementById('salida');
+
+      nodo.addEventListener('pov:hold', (e) => {
+        salida.classList.remove('vacio');
+        salida.textContent = JSON.stringify(e.detail, null, 2);
+
+        // ACÁ arrancaría tu checkout. `e.detail.amountCents` es lo que hay que cobrar, en
+        // CENTAVOS enteros, ya con descuentos, items e impuestos aplicados por el servidor.
+        // No lo recalcules del lado del cliente.
+        //
+        // Y si el comprador cancela, soltá el bloqueo en vez de esperar los 10 minutos:
+        //   nodo.pov.release(e.detail.holdToken);
+      });
+
+      nodo.addEventListener('pov:error', (e) => {
+        salida.classList.remove('vacio');
+        salida.textContent = `${e.detail.code}: ${e.detail.message}`;
+      });
+    </script>
+  </body>
+</html>
